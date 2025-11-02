@@ -1,0 +1,160 @@
+/* =========================
+   GENERAL STYLES
+========================= */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/* =========================
+   HEADER & NAVIGATION
+========================= */
+header {
+  position: relative;
+  background-color: #004aad;
+  color: white;
+  padding: 1rem 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  background-color: #003b8e;
+}
+
+/* Hamburger menu icon for small screens */
+.menu-icon {
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: #004aad;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 30px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   FORMS & INPUTS
+========================= */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* =========================
+   HERO & FEATURES
+========================= */
+.hero,
+.features {
+  text-align: center;
+  padding: 20px;
+}
+
+.feature-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.feature {
+  background: #004aad;
+  color: white;
+  padding: 15px;
+  border-radius: 15px;
+  width: 220px;
+}
+
+/* =========================
+   MINI MAP PREVIEW
+========================= */
+#miniMap {
+  width: 90%;
+  height: 250px;
+  margin: 25px auto 10px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.map-note {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media(max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+  nav {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    background-color: #004aad;
+    margin-top: 10px;
+    border-radius: 0 0 10px 10px;
+  }
+  nav.show {
+    display: flex;
+  }
+  nav a {
+    padding: 12px;
+    border-bottom: 1px solid #003b8e;
+  }
+}
