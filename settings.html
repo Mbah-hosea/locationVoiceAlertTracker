@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transport Tracker | Settings</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>🚍 Transport Tracker</h1>
+  <div class="menu-icon" id="menuIcon">&#9776;</div>
+  <nav id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="map.html">Map</a>
+    <a href="settings.html" class="active">Settings</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Alert Settings</h2>
+  <p>Configure your transport alerts below. You can choose either location-based or time-based notifications.</p>
+
+  <form id="alertForm" style="margin-top:20px;">
+    <!-- Alert Type -->
+    <label for="alertType">Alert Type:</label>
+    <select id="alertType" required>
+      <option value="location">Location-Based</option>
+      <option value="time">Time-Based</option>
+    </select>
+
+    <!-- City and Spot for Location Alerts -->
+    <div id="locationFields" style="margin-top:15px;">
+      <label for="city">City:</label>
+      <input type="text" id="city" placeholder="Enter city name">
+
+      <label for="spot">Spot / Stop:</label>
+      <input type="text" id="spot" placeholder="Enter stop or spot name">
+    </div>
+
+    <!-- Interval for Time Alerts -->
+    <div id="timeFields" style="margin-top:15px; display:none;">
+      <label for="interval">Alert Interval (minutes):</label>
+      <input type="number" id="interval" placeholder="e.g., 10">
+    </div>
+
+    <!-- Custom Alert Message -->
+    <label for="message">Alert Message:</label>
+    <textarea id="message" rows="3" placeholder="Enter your alert message"></textarea>
+
+    <!-- Language Selection -->
+    <label for="language">Alert Language:</label>
+    <select id="language">
+      <option value="en">English</option>
+      <option value="fr">French</option>
+      <option value="pidgin">Pidgin</option>
+    </select>
+
+    <button type="submit">Save Settings</button>
+  </form>
+
+  <!-- Confirmation -->
+  <div id="confirmation" class="alert" style="display:none; margin-top:15px;"></div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Transport Tracker | All Rights Reserved</p>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+const alertType = document.getElementById('alertType');
+const locationFields = document.getElementById('locationFields');
+const timeFields = document.getElementById('timeFields');
+const alertForm = document.getElementById('alertForm');
+const confirmation = document.getElementById('confirmation');
+const cityInput = document.getElementById('city');
+const spotInput = document.getElementById('spot');
+const intervalInput = document.getElementById('interval');
+const messageInput = document.getElementById('message');
+const languageInput = document.getElementById('language');
+
+// Toggle fields based on alert type
+alertType.addEventListener('change', () => {
+  if(alertType.value === 'location'){
+    locationFields.style.display = 'block';
+    timeFields.style.display = 'none';
+  } else {
+    locationFields.style.display = 'none';
+    timeFields.style.display = 'block';
+  }
+});
+
+// Load saved settings
+window.addEventListener('load', () => {
+  const saved = JSON.parse(localStorage.getItem('alertSettings'));
+  if(saved){
+    alertType.value = saved.type;
+    alertType.dispatchEvent(new Event('change'));
+    cityInput.value = saved.city || '';
+    spotInput.value = saved.spot || '';
+    intervalInput.value = saved.interval || '';
+    messageInput.value = saved.message || '';
+    languageInput.value = saved.language || 'en';
+  }
+});
+
+// Save settings to LocalStorage
+alertForm.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const settings = {
+    type: alertType.value,
+    city: cityInput.value.trim(),
+    spot: spotInput.value.trim(),
+    interval: intervalInput.value.trim(),
+    message: messageInput.value.trim() || 'Alert!',
+    language: languageInput.value
+  };
+
+  // Save city/spot as lat/lng placeholders (backend will resolve later)
+  if(settings.type === 'location'){
+    settings.lat = null;
+    settings.lng = null;
+  }
+
+  localStorage.setItem('alertSettings', JSON.stringify(settings));
+  confirmation.style.display = 'block';
+  confirmation.textContent = 'Settings saved successfully!';
+  setTimeout(()=> confirmation.style.display='none', 3000);
+});
+</script>
+
+</body>
+</html>

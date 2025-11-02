@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transport Tracker | Live Map</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Map container styling */
+    #map { width: 90%; height: 70vh; margin: 20px auto; border-radius: 15px; }
+
+    /* Control buttons */
+    .control-bar { text-align: center; margin: 15px; }
+    .control-bar button { margin: 5px; background:#004aad; color:white; padding:10px 20px; border:none; border-radius:10px; cursor:pointer; transition:0.3s; }
+    .control-bar button:hover { background:#003b8e; }
+    #status { text-align:center; font-weight:bold; margin-top:10px; color:#004aad; }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Hamburger Menu -->
+  <header>
+    <h1>🚍 Transport Tracker</h1>
+    <div class="menu-icon" id="menuIcon">&#9776;</div>
+    <nav id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="map.html" class="active">Map</a>
+      <a href="settings.html">Settings</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Map Controls -->
+    <div class="control-bar">
+      <button id="start">Start Tracking</button>
+      <button id="stop" disabled>Stop Tracking</button>
+    </div>
+    <div id="status">Click "Start Tracking" to begin.</div>
+
+    <!-- Google Map Container -->
+    <div id="map"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Transport Tracker | All Rights Reserved</p>
+  </footer>
+
+  <!-- Shared JS -->
+  <script src="js/script.js"></script>
+
+  <!-- Page-specific JS for map tracking -->
+  <script src="js/map.js"></script>
+
+  <!-- Google Maps API -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+  </script>
+
+  <script>
+    // Connect Start/Stop buttons
+    document.getElementById("start").addEventListener("click", startTracking);
+    document.getElementById("stop").addEventListener("click", stopTracking);
+  </script>
+</body>
+</html>

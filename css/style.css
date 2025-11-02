@@ -1,160 +1,55 @@
-/* =========================
-   GENERAL STYLES
-========================= */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f9f9f9;
-  color: #333;
+/* General Reset & Body */
+* { box-sizing: border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
+body { background:#f0f4f8; color:#333; }
+
+/* Header & Navigation */
+header { display:flex; justify-content:space-between; align-items:center; background:#004aad; color:white; padding:10px 20px; position:sticky; top:0; z-index:1000; }
+header h1 { font-size:1.5rem; }
+nav { display:flex; gap:15px; }
+nav a { color:white; text-decoration:none; font-weight:bold; }
+nav a.active { text-decoration:underline; }
+
+.menu-icon { display:none; font-size:1.8rem; cursor:pointer; }
+
+/* Styled fieldsets for "Why Use This App?" section */
+.why-box {
+    background-color: #004aad;   /* deep blue background */
+    color: white;                /* white text */
+    border: none;                /* remove default border */
+    border-radius: 12px;         /* rounded corners */
+    padding: 15px 20px;          /* inner spacing */
+    margin-top: 15px;            /* spacing between boxes */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow */
 }
 
-/* =========================
-   HEADER & NAVIGATION
-========================= */
-header {
-  position: relative;
-  background-color: #004aad;
-  color: white;
-  padding: 1rem 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+.why-box legend {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0 5px;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
+/* Responsive Menu */
+@media screen and (max-width:768px){
+  nav { display:none; flex-direction:column; background:#004aad; position:absolute; top:60px; left:0; width:100%; padding:10px; }
+  nav.show { display:flex; }
+  .menu-icon { display:block; }
 }
 
-nav {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
+/* Main content */
+main { padding:20px; max-width:1000px; margin:auto; }
+h2 { margin-bottom:15px; }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  transition: background 0.3s;
-}
+/* Forms & Inputs */
+label { display:block; margin-top:15px; font-weight:bold; }
+input, select, textarea { width:100%; padding:10px; margin-top:5px; border-radius:8px; border:1px solid #ccc; }
+button { margin-top:20px; padding:10px 20px; border:none; border-radius:10px; background:#004aad; color:white; cursor:pointer; }
+button:hover { background:#003b8e; }
 
-nav a:hover,
-nav a.active {
-  background-color: #003b8e;
-}
+/* Map */
+#map { height:70vh; width:100%; border-radius:15px; margin:20px 0; }
 
-/* Hamburger menu icon for small screens */
-.menu-icon {
-  font-size: 1.8rem;
-  cursor: pointer;
-  display: none;
-}
+/* Footer */
+footer { text-align:center; padding:15px; background:#004aad; color:white; margin-top:20px; }
 
-/* =========================
-   FOOTER
-========================= */
-footer {
-  background: #004aad;
-  color: white;
-  text-align: center;
-  padding: 15px 0;
-  margin-top: 30px;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* =========================
-   FORMS & INPUTS
-========================= */
-input, select, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-/* =========================
-   HERO & FEATURES
-========================= */
-.hero,
-.features {
-  text-align: center;
-  padding: 20px;
-}
-
-.feature-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.feature {
-  background: #004aad;
-  color: white;
-  padding: 15px;
-  border-radius: 15px;
-  width: 220px;
-}
-
-/* =========================
-   MINI MAP PREVIEW
-========================= */
-#miniMap {
-  width: 90%;
-  height: 250px;
-  margin: 25px auto 10px auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.map-note {
-  font-size: 0.9rem;
-  color: #555;
-  text-align: center;
-  margin-top: 5px;
-}
-
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
-@media(max-width: 768px) {
-  .menu-icon {
-    display: block;
-  }
-  nav {
-    flex-direction: column;
-    width: 100%;
-    display: none;
-    background-color: #004aad;
-    margin-top: 10px;
-    border-radius: 0 0 10px 10px;
-  }
-  nav.show {
-    display: flex;
-  }
-  nav a {
-    padding: 12px;
-    border-bottom: 1px solid #003b8e;
-  }
-}
+/* Alerts or Messages */
+.alert { background:#ffd700; padding:10px; border-radius:10px; margin-top:15px; text-align:center; font-weight:bold; }
